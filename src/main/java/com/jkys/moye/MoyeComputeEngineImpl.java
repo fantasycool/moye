@@ -10,7 +10,7 @@ import java.util.Map;
 public class MoyeComputeEngineImpl implements MoyeComputeEngine {
 
     public Object execute(String expression, Map<String, Object> context) {
-        MoyeParser moyeParser = new MoyeParser();
+        MoyeParserImpl moyeParser = new MoyeParserImpl();
         List<Word> words = moyeParser.parseExpression(expression);
         for(Word w : words){
             System.out.println(w.getName());

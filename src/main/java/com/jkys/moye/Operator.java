@@ -193,12 +193,12 @@ public class Operator extends Word {
         } else if (arg instanceof BaseTypeValue) {
             return ((BaseTypeValue) arg).getName().toString();
         } else if (arg instanceof DynamicVariable) {
-            Object value = context.get(((BaseTypeValue) arg).getName());
+            Object value = context.get(((Word) arg).getName());
             if (value == null) {
-                throw new IllegalArgumentException("context does not contain key:" + ((BaseTypeValue) arg).getName());
+                throw new IllegalArgumentException("context does not contain key:" + ((Word) arg).getName());
             }
-            if (!MoyeParser.isDouble(value.toString()) && !MoyeParser.isInteger(value.toString())) {
-                throw new IllegalAccessError(String.format("context key:%s is not number value", ((BaseTypeValue) arg).getName()));
+            if (!MoyeParserImpl.isDouble(value.toString()) && !MoyeParserImpl.isInteger(value.toString())) {
+                throw new IllegalAccessError(String.format("context key:%s is not number value", ((Word) arg).getName()));
             }
             return value.toString();
         } else if(arg instanceof BigDecimal){
@@ -216,12 +216,12 @@ public class Operator extends Word {
         } else if (arg instanceof BaseTypeValue) {
             return new BigDecimal(((BaseTypeValue) arg).getName());
         } else if (arg instanceof DynamicVariable) {
-            Object value = context.get(((BaseTypeValue) arg).getName());
+            Object value = context.get(((Word) arg).getName());
             if (value == null) {
-                throw new IllegalArgumentException("context does not contain key:" + ((BaseTypeValue) arg).getName());
+                throw new IllegalArgumentException("context does not contain key:" + ((Word) arg).getName());
             }
-            if (!MoyeParser.isDouble(value.toString()) && !MoyeParser.isInteger(value.toString())) {
-                throw new IllegalAccessError(String.format("context key:%s is not number value", ((BaseTypeValue) arg).getName()));
+            if (!MoyeParserImpl.isDouble(value.toString()) && !MoyeParserImpl.isInteger(value.toString())) {
+                throw new IllegalAccessError(String.format("context key:%s is not number value", ((Word) arg).getName()));
             }
             return new BigDecimal(value.toString());
         } else if(arg instanceof BigDecimal){
